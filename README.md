@@ -15,4 +15,4 @@ From: https://github.com/porisius/ArduinoKit
 ## Tested to compile for Linux UE4.20 - 4.27
 
 ## Not tested to actually work - no Arduino board
-https://github.com/3dluvr/ArduinoKit
+- Per https://github.com/3dluvr/ArduinoKit

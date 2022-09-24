@@ -1,0 +1,24 @@
+using UnrealBuildTool;
+
+public class ArduinoKit : ModuleRules
+{
+    public ArduinoKit(ReadOnlyTargetRules Target) : base(Target)
+    {
+	PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+
+        PrivateIncludePaths.AddRange(new[] { "ArduinoKit/Private" });
+
+        PrivateDependencyModuleNames.AddRange(
+            new[]
+            {
+                "Engine",
+                "InputCore",
+                "Core",
+                "Slate",
+                "SlateCore",
+                "CoreUObject"
+            }
+        );
+    }
+}
+

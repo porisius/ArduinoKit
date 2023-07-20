@@ -1,11 +1,12 @@
 {
 	"FileVersion": 3,
+	"SemVersion": "1.0.4",
+	"AcceptsAnyRemoteVersion": true,
 	"Version": 1,
-	"VersionName": "1.0.1",
-	"SemVersion": "1.0.1",
+	"VersionName": "1.0.4",
 	"FriendlyName": "ArduinoKit",
 	"Description": "ArduinoKit - Plugin for arduino",
-	"Category": "valente.ArduinoKit",
+	"Category": "Modding",
 	"CreatedBy": "Daniel Valente",
 	"CreatedByURL": "",
 	"DocsURL": "",
@@ -15,14 +16,12 @@
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
-	"AcceptsAnyRemoteVersion": true,
 	"Modules": [
 		{
 			"Name": "ArduinoKit",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
-			"WhitelistPlatforms": [
-				"Win32",
+			"PlatformAllowList": [
 				"Win64",
 				"Linux"
 			]
@@ -31,8 +30,9 @@
 	"Plugins": [
 		{
 			"Name": "SML",
-			"SemVersion": "^3.3.0",
-			"Enabled": true
+			"Enabled": true,
+			"SemVersion": "^3.5.0",
+			"BasePlugin": false
 		}
 	]
 }

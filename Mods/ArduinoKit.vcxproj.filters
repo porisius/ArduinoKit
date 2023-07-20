@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\ArduinoKit.uplugin" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{44471E14-32B3-47BE-80B1-3B9C58EFC5F4}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\Config\FilterPlugin.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{CA887D7F-0278-4D19-B87A-06AAC372AF3E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\Resources\Icon128.png">
+      <Filter>Resources</Filter>
+    </None>
+  </ItemGroup>
+</Project>

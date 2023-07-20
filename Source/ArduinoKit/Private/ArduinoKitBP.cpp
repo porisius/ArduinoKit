@@ -4,7 +4,13 @@
 
 
 #ifdef _WIN32
-#include <Windows.h>
+// waka2ya
+// #define WIN32_LEAN_AND_MEAN
+// #include "AllowWindowsPlatformTypes.h"
+#include "Windows/MinWindows.h"
+// #include <Windows.h>
+// #include "HideWindowsPlatformTypes.h"
+
 #else
 #include <unistd.h>
 #endif
@@ -18,30 +24,34 @@ UArduinoKitBP::UArduinoKitBP(const class FObjectInitializer& PCIP)
 {
 }
 
-void UArduinoKitBP::Open(FString port, int32 baudrate, int32 TextStackSize)
+bool UArduinoKitBP::Open(FString port, int32 baudrate, int32 TextStackSize)
 {
 	Close();
 
-	if (RS232_OpenComportUE4(TCHAR_TO_ANSI(*port), baudrate))
+	if (RS232_OpenComportUE4(TCHAR_TO_ANSI(*port), baudrate) == 0)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("UArduinoKitBP::Open -> Success"));
+		FArduinoKitThread::Launch(TextStackSize);
+		return true;
+	}
+	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("UArduinoKitBP::Open -> Failed"));
 		FArduinoKitThread::Shutdown();
-	}
-	else {
-		UE_LOG(LogTemp, Warning, TEXT("UArduinoKitBP::Open -> Success"));
-		FArduinoKitThread::Launch(TextStackSize);
-	}
-	
+		return false;
+	}	
 }
 
 void UArduinoKitBP::Close()
 {
-	if (RS232_CloseComportUE4()) {
+	if (RS232_CloseComportUE4() == 0) {
+		UE_LOG(LogTemp, Warning, TEXT("UArduinoKitBP::Close -> Success"));
+	} 
+	else 
+	{
 		UE_LOG(LogTemp, Warning, TEXT("UArduinoKitBP::Close -> Failed"));
 	}
-	else {
-		UE_LOG(LogTemp, Warning, TEXT("UArduinoKitBP::Close -> Success"));
-	}
+	
 	FArduinoKitThread::Shutdown();
 }
 
@@ -85,9 +95,19 @@ TArray<uint8> UArduinoKitBP::ReadBytes()
 
 FString UArduinoKitBP::ReadText()
 {
-	if (FArduinoKitThread::Runnable != nullptr && FArduinoKitThread::Runnable->StringStack.Num()>0) {
-		FString readText = FArduinoKitThread::Runnable->StringStack.Pop();
-		return readText;
+	if (FArduinoKitThread::Runnable != nullptr) {
+		if (FArduinoKitThread::Runnable->StringStack.Num() > 0) {
+			FString readText = FArduinoKitThread::Runnable->StringStack.Pop();
+			return readText;
+		}
+		else
+		{
+			// UE_LOG(LogTemp, Warning, TEXT("ReadText() Empty"));
+		}
+	}
+	else
+	{
+		// UE_LOG(LogTemp, Warning, TEXT("ReadText() not Runnable"));
 	}
 
 	return FString();

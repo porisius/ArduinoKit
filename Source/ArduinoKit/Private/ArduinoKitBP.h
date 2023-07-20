@@ -12,7 +12,7 @@ public:
 	UArduinoKitBP(const FObjectInitializer& ObjectInitializer);
 
 	UFUNCTION(BlueprintCallable, Category = "ArduinoKit")
-		static void Open(FString port, int32 baudrate, int32 TextStackSize = 50);
+		static bool Open(FString port, int32 baudrate, int32 TextStackSize = 50);
 
 	UFUNCTION(BlueprintCallable, Category = "ArduinoKit")
 		static void Close();
@@ -23,7 +23,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "ArduinoKit")
 		static void WriteText(FString text);
 
-//	UFUNCTION(BlueprintCallable, Category = "ArduinoKit")
+	UFUNCTION(BlueprintCallable, Category = "ArduinoKit")
 		static TArray<uint8> ReadBytes();
 	
 	UFUNCTION(BlueprintCallable, Category = "ArduinoKit")
@@ -35,7 +35,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "ArduinoKit")
 		static bool IsOpen();
 
-//	UFUNCTION(BlueprintCallable, Category = "ArduinoKit")
+	UFUNCTION(BlueprintCallable, Category = "ArduinoKit")
 		static FString StringFromByteArray(TArray<uint8> BinaryData);
 };
 

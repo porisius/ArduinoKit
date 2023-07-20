@@ -83,6 +83,11 @@ FArduinoKitThread* FArduinoKitThread::Launch(int32 StringStackSize)
 	{
 		Runnable = new FArduinoKitThread(StringStackSize);
 	}
+
+	if (!Runnable)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Thread not Runnable"));
+	}
 	return Runnable;
 }
 

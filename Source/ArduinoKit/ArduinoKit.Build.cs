@@ -4,7 +4,11 @@ public class ArduinoKit : ModuleRules
 {
     public ArduinoKit(ReadOnlyTargetRules Target) : base(Target)
     {
-	PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+        bEnableUndefinedIdentifierWarnings = false;
+
+        PrivatePCHHeaderFile = "Private/ArduinoKitPCH.h";
+
+        PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
         PrivateIncludePaths.AddRange(new[] { "ArduinoKit/Private" });
 

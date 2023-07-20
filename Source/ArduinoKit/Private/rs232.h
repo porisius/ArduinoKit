@@ -43,7 +43,7 @@ extern "C" {
 //UE4 Helper Functions
 #define UE4_PORT_INDEX 0
 
-#if defined(__linux__) || defined(__FreeBSD__)
+#if defined(__linux__) || defined(__FreeBSD__) || defined(__APPLE__) || defined(__MACH__)
 
 #include <termios.h>
 #include <sys/ioctl.h>

@@ -22,19 +22,14 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *
-***************************************************************************
-*/
 
-
-/* Last revision: November 22, 2017 */
-
-/* For more info and how to use this library, visit: http://www.teuniz.net/RS-232/ */
+* For more info and how to use this library, visit: http://www.teuniz.net/RS-232/ */
 
 
 #include "rs232.h"
 
 
-#if defined(__linux__) || defined(__FreeBSD__)   /* Linux & FreeBSD */
+#if PLATFORM_LINUX || PLATFORM_MAC
 
 #define RS232_PORTNR  38
 
@@ -103,30 +98,30 @@ int RS232_OpenComport(int comport_number, int baudrate, const char *mode)
                    break;
     case  230400 : baudr = B230400;
                    break;
-    case  460800 : baudr = B460800;
-                   break;
-    case  500000 : baudr = B500000;
-                   break;
-    case  576000 : baudr = B576000;
-                   break;
-    case  921600 : baudr = B921600;
-                   break;
-    case 1000000 : baudr = B1000000;
-                   break;
-    case 1152000 : baudr = B1152000;
-                   break;
-    case 1500000 : baudr = B1500000;
-                   break;
-    case 2000000 : baudr = B2000000;
-                   break;
-    case 2500000 : baudr = B2500000;
-                   break;
-    case 3000000 : baudr = B3000000;
-                   break;
-    case 3500000 : baudr = B3500000;
-                   break;
-    case 4000000 : baudr = B4000000;
-                   break;
+//    case  460800 : baudr = B460800;
+//                   break;
+//    case  500000 : baudr = B500000;
+//                   break;
+//    case  576000 : baudr = B576000;
+//                   break;
+//    case  921600 : baudr = B921600;
+//                   break;
+//    case 1000000 : baudr = B1000000;
+//                   break;
+//    case 1152000 : baudr = B1152000;
+//                   break;
+//    case 1500000 : baudr = B1500000;
+//                   break;
+//    case 2000000 : baudr = B2000000;
+//                   break;
+//    case 2500000 : baudr = B2500000;
+//                   break;
+//    case 3000000 : baudr = B3000000;
+//                   break;
+//    case 3500000 : baudr = B3500000;
+//                   break;
+//    case 4000000 : baudr = B4000000;
+//                   break;
     default      : printf("invalid baudrate\n");
                    return(1);
                    break;
@@ -789,7 +784,7 @@ int RS232_GetPortnr(const char *devname)
 
   char str[32];
 
-#if defined(__linux__) || defined(__FreeBSD__)   /* Linux & FreeBSD */
+#if defined(__linux__) || defined(__FreeBSD__) || defined(__APPLE__) || defined(__MACH__)
   strcpy(str, "/dev/");
 #else  /* windows */
   strcpy(str, "\\\\.\\");
@@ -811,8 +806,8 @@ int RS232_GetPortnr(const char *devname)
 //UE4 Helper Functions
 int RS232_OpenComportUE4(char * c, int baudrate)
 {
-    int baudr,
-    status;
+    // int baudr,
+    // status;
 
     int comport_number = UE4_PORT_INDEX;
     comports[comport_number] = c;

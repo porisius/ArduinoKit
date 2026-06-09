@@ -1,9 +1,9 @@
 {
 	"FileVersion": 3,
-	"SemVersion": "1.0.5",
+	"SemVersion": "1.0.11",
 	"AcceptsAnyRemoteVersion": true,
 	"Version": 1,
-	"VersionName": "1.0.5",
+	"VersionName": "",
 	"FriendlyName": "ArduinoKit",
 	"Description": "ArduinoKit - Plugin for arduino",
 	"Category": "Modding",
@@ -31,9 +31,9 @@
 		{
 			"Name": "SML",
 			"Enabled": true,
-			"SemVersion": "^3.6.0",
-			"BasePlugin": false
+			"SemVersion": "^3.12.0"
 		}
 	],
-	"RemoteVersionRange": ""
+	"GameVersion": ">=491125",
+	"RequiredOnRemote": false
 }
